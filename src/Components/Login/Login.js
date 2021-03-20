@@ -77,7 +77,7 @@ const Login = () => {
                     updateUserInfo.error = error.message;
                     updateUserInfo.success = false;
                     setUser(updateUserInfo);
-
+                    console.log(error.message);
                    
                 });
           
