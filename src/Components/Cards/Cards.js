@@ -1,20 +1,15 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
-import { UserContext } from '../../App';
 import './Cards.css';
 
 
 const Cards = (props) => {
     const { vehicle } = props;
-    const {transport} = useContext(UserContext);
-    const [vehicleType, setVehicleType] = transport;
-    
 
     return (
-      
-        
-        <Link to={`/checkoutinfo/${vehicle.type}`} style={{textDecoration: 'none'}}>
-            <div className="card my-card">
+
+        <Link to={`/checkoutinfo/${vehicle.type}`} style={{ textDecoration: 'none' }}>
+            <div className="card my-card mt-5">
                 <div className="img-container">
                     <img className="card-img-top" src={vehicle.src} alt={vehicle.type} />
                 </div>
@@ -24,7 +19,7 @@ const Cards = (props) => {
                 </div>
             </div>
         </Link>
-       
+
     );
 };
 

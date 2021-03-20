@@ -7,11 +7,15 @@ const Home = () => {
     return (
         <>
             <h2 className="text-center mt-2">Choose A Transport</h2>
-            <div className="container d-flex my-5 justify-content-between">
 
-                {
-                    vehicles.map(vehicle => <Cards vehicle={vehicle} key={vehicle.id} />)
-                }
+            <div className="container my-5 d-flex justify-content-between flex-wrap">
+               
+                    
+                        {
+                            vehicles.map(vehicle => <Cards vehicle={vehicle} key={vehicle.id} />)
+                        }
+                    
+                
             </div>
         </>
 

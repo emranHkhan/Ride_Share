@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { Link, NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import './Header.css';
 import Navbar from 'react-bootstrap/Navbar';
 import { Nav } from 'react-bootstrap';
@@ -7,9 +7,8 @@ import { UserContext } from '../../App';
 
 const Header = () => {
 
-    const { logInfo } = useContext(UserContext);
-    const [loggedInUser, setLoggedInUser] = logInfo;
-
+    const [loggedInUser, setLoggedInUser] = useContext(UserContext);
+    
     return (
 
         <Navbar collapseOnSelect expand="md" bg="dark" variant="dark">

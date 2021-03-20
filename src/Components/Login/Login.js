@@ -11,8 +11,7 @@ if (firebase.apps.length === 0) {
 }
 
 const Login = () => {
-    const {logInfo} = useContext(UserContext);
-    const [loggedInUser, setLoggedInUser] = logInfo;
+    const[loggedInUser, setLoggedInUser] = useContext(UserContext);
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [user, setUser] = useState({
         name: '',

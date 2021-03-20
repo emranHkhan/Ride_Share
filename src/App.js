@@ -11,10 +11,9 @@ export const UserContext = createContext();
 
 function App() {
   const [loggedInUser, setLoggedInUser] = useState({});
-  const [vehicleType, setVehicleType] = useState('');
   return (
    
-      <UserContext.Provider value={{logInfo: [loggedInUser, setLoggedInUser], transport: [vehicleType, setVehicleType]}}>
+      <UserContext.Provider value={[loggedInUser, setLoggedInUser]}>
         
         <Router>
           <Header />
