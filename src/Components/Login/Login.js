@@ -18,7 +18,8 @@ const Login = () => {
         email: '',
         password: '',
         error: '',
-        success: false
+        success: false,
+        confirmPassword: '',
     });
     const [isEmailValid, setIsEmailValid] = useState(true);
     const [isPasswordValid, setIspasswordValid] = useState(true);
@@ -51,20 +52,23 @@ const Login = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
        
-        if (isNewUser && user.email && user.password) {
-            firebase.auth().createUserWithEmailAndPassword(user.email, user.password)
+        if (isNewUser && user.email && user.password && mathchedPassword) {
+            
+                firebase.auth().createUserWithEmailAndPassword(user.email, user.password)
                 .then((result) => {
-                    console.log(result);
-                    const updateUserInfo = { ...user };
-                    updateUserInfo.error = "";
-                    updateUserInfo.success = true;
-                    setUser(updateUserInfo);
-
+                    
+                        const updateUserInfo = { ...user };
+                        updateUserInfo.error = "";
+                        updateUserInfo.success = true;
+                        setUser(updateUserInfo);
+    
+                     
+                        const { displayName, email } = result.user;
+                        const signedInuser = { name: displayName, email: email };
+                        setLoggedInUser(signedInuser);
+                        // history.replace(from);
                  
-                    const { displayName, email } = result.user;
-                    const signedInuser = { name: displayName, email: email };
-                    setLoggedInUser(signedInuser);
-                    history.replace(from);
+                   
     
 
                 })
@@ -76,6 +80,8 @@ const Login = () => {
 
                    
                 });
+          
+            
         }
 
         if (!isNewUser && user.email && user.password) {
@@ -123,8 +129,10 @@ const Login = () => {
             setIspasswordValid(isFormValid);
         }
 
-        if (e.target.name === 'confirm-password') {
+        if (e.target.name === 'confirmPassword') {
+            
             passwordValidation = e.target.value === confirmPassword;
+            console.log(passwordValidation);
             setMatchedPassword(passwordValidation);
         }
 
@@ -178,7 +186,7 @@ const Login = () => {
                     isLoggedIn ? (
                         <div>
                             <label>Confirm Password</label>
-                            <input type="password" className="form-control" placeholder="Password" name="confirm-password" onBlur={handleBlur} required />
+                            <input type="password" className="form-control" placeholder="Password" name="confirmPassword" onBlur={handleBlur} required />
                             {mathchedPassword ? null : <small className="text-danger">Password didn't match</small>}
                         </div>
                     ) : null
@@ -207,7 +215,7 @@ const Login = () => {
 
             <div className="mt-3">
                 {
-                    user.success ? <small className="text-success text-center">User {isNewUser ? 'created' : 'logged in'} successfully</small> : <small className="text-danger text-center">{user.error}</small>
+                    user.success ? <small className="text-success text-center">User created successfully</small> : <small className="text-danger text-center">{user.error}</small>
                 }
             </div>
 

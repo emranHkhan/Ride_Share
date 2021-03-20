@@ -6,6 +6,8 @@ import CheckoutInfo from './Components/CheckoutInfo/CheckoutInfo';
 import { createContext, useState } from 'react';
 import Login from './Components/Login/Login';
 import PrivateRoute from './Components/PrivateRoute/PrivateRoute';
+import Blog from './Components/Blog/Blog';
+import Contact from './Components/Contact/Contact';
 
 export const UserContext = createContext();
 
@@ -37,6 +39,14 @@ function App() {
 
             <Route path="/login">
               <Login />
+            </Route>
+
+            <Route to="/blog">
+              <Blog />
+            </Route>
+
+            <Route to="/contact">
+              <Contact />
             </Route>
 
           </Switch>

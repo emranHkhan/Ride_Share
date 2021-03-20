@@ -3,6 +3,7 @@ import { Button, Form } from 'react-bootstrap';
 import { useParams } from 'react-router';
 import { vehicles } from '../../fakedata';
 import GoogleMap from '../GoogleMap/GoogleMap';
+import VehicleInfo from '../VehicleInfo/VehicleInfo';
 import './CheckoutInfo.css';
 
 // Readme edit korte hobe
@@ -37,7 +38,7 @@ const CheckoutInfo = () => {
     }
 
     return (
-        <div>
+        <div className="container">
 
 
             <div className="row mt-5 pb-5">
@@ -45,7 +46,7 @@ const CheckoutInfo = () => {
                 <div className="col-lg-3 pt-3">
                     {
                         visibility ? (
-                            <div className="jumbo">
+                            <div className="jumbo ml-5">
 
                                 <Form onSubmit={handleVisibility}>
                                     <Form.Group>
@@ -70,32 +71,14 @@ const CheckoutInfo = () => {
                         ) :
 
                             (
-                                <div className="jumbo">
+                                <div className="jumbo ml-5">
                                     <div>
                                         <h5>From <span className="text-success">{from}</span> to <span className="text-warning">{to}</span></h5>
                                     </div>
-                                    <div className="d-flex justify-content-between align-items-center mt-5">
-                                        <img src={vehicleInfo.src} alt="" style={{ maxWidth: '50px', maxHeight: '50px' }} />
-                                        <h4>{vehicleInfo.type}</h4>
-                                        <h4>{vehicleInfo.quantity}</h4>
-                                        <h4>{vehicleInfo.price}</h4>
-                                    </div>
-
-                                    <div className="d-flex justify-content-between align-items-center mt-2">
-                                        <img src={vehicleInfo.src} alt="" style={{ maxWidth: '50px', maxHeight: '50px' }} />
-                                        <h4>{vehicleInfo.type}</h4>
-                                        <h4>{vehicleInfo.quantity}</h4>
-                                        <h4>{vehicleInfo.price}</h4>
-                                    </div>
-
-                                    <div className="d-flex justify-content-between align-items-center mt-2">
-                                        <img src={vehicleInfo.src} alt="" style={{ maxWidth: '50px', maxHeight: '50px' }} />
-                                        <h4>{vehicleInfo.type}</h4>
-                                        <h4>{vehicleInfo.quantity}</h4>
-                                        <h4>{vehicleInfo.price}</h4>
-                                    </div>
-
-                                    
+                                
+                                    <VehicleInfo vehicleInfo={vehicleInfo} />
+                                    <VehicleInfo vehicleInfo={vehicleInfo} />
+                                    <VehicleInfo vehicleInfo={vehicleInfo} />
 
                                     <Button variant="primary" className="btn btn-block btn-info mt-5" onClick={() => setVisibilty(!visibility)}>
                                         Back

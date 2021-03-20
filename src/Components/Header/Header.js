@@ -8,11 +8,13 @@ import { UserContext } from '../../App';
 const Header = () => {
 
     const [loggedInUser, setLoggedInUser] = useContext(UserContext);
-    
+
     return (
 
         <Navbar collapseOnSelect expand="md" bg="dark" variant="dark">
-            <Navbar.Brand>Ride Share</Navbar.Brand>
+            <Navbar.Brand>
+                <Link to="/" style={{textDecoration: 'none', color: 'white', fontWeight: 'bold'}}>Ride Share</Link>
+            </Navbar.Brand>
             <Navbar.Toggle aria-controls="responsive-navbar-nav" />
             <Navbar.Collapse id="responsive-navbar-nav">
                 <Nav className="ml-auto">
