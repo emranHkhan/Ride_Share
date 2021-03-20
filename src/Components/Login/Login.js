@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useRef } from 'react';
 import { UserContext } from '../../App';
 import firebase from "firebase/app";
 import "firebase/auth";
@@ -6,12 +6,14 @@ import firebaseConfig from './Firebase.Config';
 import './Login.css';
 import { useHistory, useLocation } from 'react-router';
 
+
 if (firebase.apps.length === 0) {
     firebase.initializeApp(firebaseConfig);
 }
 
 const Login = () => {
     const [loggedInUser, setLoggedInUser] = useContext(UserContext);
+    const clearInput = useRef();
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [user, setUser] = useState({
         name: '',
@@ -47,23 +49,7 @@ const Login = () => {
                 console.log(error.Message);
             });
     }
-    // var provider = new firebase.auth.FacebookAuthProvider();
 
-    // const handleFbSignIn = () => {
-    //     firebase
-    //         .auth()
-    //         .signInWithPopup(provider)
-    //         .then((result) => {
-    //             const { displayName, email } = result.user;
-    //             const signedInuser = { name: displayName, email: email };
-    //             setLoggedInUser(signedInuser);
-    //             history.replace(from);
-    //             console.log(result);
-    //         })
-    //         .catch((error) => {
-    //             console.log(error.Message);
-    //         });
-    // }
 
 
 
@@ -71,7 +57,6 @@ const Login = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-
         if (isNewUser && user.email && user.password && mathchedPassword) {
 
             firebase.auth().createUserWithEmailAndPassword(user.email, user.password)
@@ -166,7 +151,10 @@ const Login = () => {
         setIsLoggedIn(!isLoggedIn);
         setIsNewUser(!isNewUser);
         setUser({});
+        clearInput.current.reset();
     }
+
+
 
 
     return (
@@ -177,7 +165,7 @@ const Login = () => {
                 }
             </h5>
 
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit} ref={clearInput}>
                 {
                     isLoggedIn ? (
                         <div className="form-group">
@@ -221,14 +209,10 @@ const Login = () => {
 
                 </div>
 
-
-
                 {
-                    isLoggedIn ? <button type='submit' className="btn btn-info btn-block">Register</button> :
-                        <>
-                            <button type="submit" className="btn btn-info btn-block">Log In</button>
-                        </>
+                    <button type="submit" className="btn btn-info btn-block">{isLoggedIn ? 'Register' : 'Login'}</button>
                 }
+
             </form>
 
             <div className="mt-3">
@@ -252,7 +236,7 @@ const Login = () => {
             </div>
 
             <div>
-                <h2 style={{ textAlign: 'center' }}>Or</h2>
+                <h2 style={{ textAlign: 'center', fontFamily: 'Dancing Script, cursive'}}>OR</h2>
                 <button className="btn btn-outline-primary btn-block" onClick={handleGoogleSignIn}>Continue With Google</button>
             </div>
 

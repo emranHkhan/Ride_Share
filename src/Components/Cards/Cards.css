@@ -27,5 +27,10 @@
     max-width: 180px;
     max-height: 180px;
     object-fit: cover;
+    padding: 15px;
    
+}
+
+#card {
+    background-image: linear-gradient(to top, #cfd9df 0%, #e2ebf0 100%);
 }
