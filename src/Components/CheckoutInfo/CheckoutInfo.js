@@ -46,7 +46,7 @@ const CheckoutInfo = () => {
                 <div className="col-lg-3 pt-3">
                     {
                         visibility ? (
-                            <div className="jumbo ml-5">
+                            <div className="jumbo">
 
                                 <Form onSubmit={handleVisibility}>
                                     <Form.Group>
@@ -71,7 +71,7 @@ const CheckoutInfo = () => {
                         ) :
 
                             (
-                                <div className="jumbo ml-5">
+                                <div className="jumbo">
                                     <div>
                                         <h5>From <span className="text-success">{from}</span> to <span className="text-warning">{to}</span></h5>
                                     </div>
