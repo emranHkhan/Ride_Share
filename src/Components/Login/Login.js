@@ -11,7 +11,7 @@ if (firebase.apps.length === 0) {
 }
 
 const Login = () => {
-    const[loggedInUser, setLoggedInUser] = useContext(UserContext);
+    const [loggedInUser, setLoggedInUser] = useContext(UserContext);
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [user, setUser] = useState({
         name: '',
@@ -47,29 +47,48 @@ const Login = () => {
                 console.log(error.Message);
             });
     }
+    // var provider = new firebase.auth.FacebookAuthProvider();
+
+    // const handleFbSignIn = () => {
+    //     firebase
+    //         .auth()
+    //         .signInWithPopup(provider)
+    //         .then((result) => {
+    //             const { displayName, email } = result.user;
+    //             const signedInuser = { name: displayName, email: email };
+    //             setLoggedInUser(signedInuser);
+    //             history.replace(from);
+    //             console.log(result);
+    //         })
+    //         .catch((error) => {
+    //             console.log(error.Message);
+    //         });
+    // }
+
+
+
 
 
     const handleSubmit = (e) => {
         e.preventDefault();
-       
+
         if (isNewUser && user.email && user.password && mathchedPassword) {
-            
-                firebase.auth().createUserWithEmailAndPassword(user.email, user.password)
+
+            firebase.auth().createUserWithEmailAndPassword(user.email, user.password)
                 .then((result) => {
-                    
-                        const updateUserInfo = { ...user };
-                        updateUserInfo.error = "";
-                        updateUserInfo.success = true;
-                        setUser(updateUserInfo);
-    
-                     
-                        const { displayName, email } = result.user;
-                        const signedInuser = { name: displayName, email: email };
-                        setLoggedInUser(signedInuser);
-                        // history.replace(from);
-                 
-                   
-    
+
+                    const updateUserInfo = { ...user };
+                    updateUserInfo.error = "";
+                    updateUserInfo.success = true;
+                    setUser(updateUserInfo);
+
+
+                    const { displayName, email } = result.user;
+                    const signedInuser = { name: displayName, email: email };
+                    setLoggedInUser(signedInuser);
+
+
+
 
                 })
                 .catch((error) => {
@@ -78,10 +97,10 @@ const Login = () => {
                     updateUserInfo.success = false;
                     setUser(updateUserInfo);
                     console.log(error.message);
-                   
+
                 });
-          
-            
+
+
         }
 
         if (!isNewUser && user.email && user.password) {
@@ -92,14 +111,14 @@ const Login = () => {
                     updateUserInfo.error = "";
                     updateUserInfo.success = true;
                     setUser(updateUserInfo);
-                    
-                    
+
+
                     const { displayName, email } = result.user;
                     const signedInuser = { name: displayName, email: email };
                     setLoggedInUser(signedInuser);
                     history.replace(from);
-                   
-    
+
+
                 })
                 .catch((error) => {
                     const updateUserInfo = { ...user };
@@ -107,7 +126,7 @@ const Login = () => {
                     updateUserInfo.success = false;
                     setUser(updateUserInfo);
 
-                    
+
                 });
         }
     }
@@ -130,9 +149,8 @@ const Login = () => {
         }
 
         if (e.target.name === 'confirmPassword') {
-            
+
             passwordValidation = e.target.value === confirmPassword;
-            console.log(passwordValidation);
             setMatchedPassword(passwordValidation);
         }
 
