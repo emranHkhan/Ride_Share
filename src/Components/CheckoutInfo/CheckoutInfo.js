@@ -5,8 +5,12 @@ import { vehicles } from '../../fakedata';
 import GoogleMap from '../GoogleMap/GoogleMap';
 import VehicleInfo from '../VehicleInfo/VehicleInfo';
 import './CheckoutInfo.css';
-
-// Readme edit korte hobe
+import Timeline from '@material-ui/lab/Timeline';
+import TimelineItem from '@material-ui/lab/TimelineItem';
+import TimelineSeparator from '@material-ui/lab/TimelineSeparator';
+import TimelineConnector from '@material-ui/lab/TimelineConnector';
+import TimelineContent from '@material-ui/lab/TimelineContent';
+import TimelineDot from '@material-ui/lab/TimelineDot';
 
 const CheckoutInfo = () => {
     let { type } = useParams();
@@ -73,9 +77,25 @@ const CheckoutInfo = () => {
                             (
                                 <div className="jumbo">
                                     <div>
-                                        <h5>From <span className="text-success">{from}</span> to <span className="text-warning">{to}</span></h5>
+
+                                        <Timeline style={{ marginRight: 200 }}>
+                                            <TimelineItem>
+                                                <TimelineSeparator>
+                                                    <TimelineDot />
+                                                    <TimelineConnector />
+                                                </TimelineSeparator>
+                                                <TimelineContent style={{ marginTop: '-5px' }}>{from}</TimelineContent>
+                                            </TimelineItem>
+                                            <TimelineItem>
+                                                <TimelineSeparator>
+                                                    <TimelineDot />
+                                                </TimelineSeparator>
+                                                <TimelineContent style={{ marginTop: '-5px' }}>{to}</TimelineContent>
+                                            </TimelineItem>
+                                        </Timeline>
+                                    
                                     </div>
-                                
+
                                     <VehicleInfo vehicleInfo={vehicleInfo} />
                                     <VehicleInfo vehicleInfo={vehicleInfo} />
                                     <VehicleInfo vehicleInfo={vehicleInfo} />
@@ -91,7 +111,7 @@ const CheckoutInfo = () => {
 
                 </div>
                 <div className="col-lg-8 offset-lg-1 map-div pl-5 pt-3">
-                   <GoogleMap />
+                    <GoogleMap />
                 </div>
             </div>
 
